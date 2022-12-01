@@ -2,6 +2,7 @@ import * as fs from 'fs';
 import * as https from 'https';
 
 const cookie = `session=${fs.readFileSync(`${__dirname}/../cookie`)}`;
+const ua = 'User-Agent=AoC2022 Input reader 1.0';
 
 const year = '2022';
 const day = parseInt(process.argv[2], 10);
@@ -14,7 +15,7 @@ const type = process.argv[2].slice(-1) === '+' ? 'second' : 'first';
 const file = `./day${day.toString().padStart(2, '0')}.ts`;
 const callback = require(file)[type];
 
-const headers = { cookie };
+const headers = { cookie, ua };
 
 const inputFile = `${__dirname}/../input/day${day
 	.toString()
