@@ -1,43 +1,22 @@
-const parse = (s: string) => s.split('\n').map((s) => {
-  if (s.length === 0) {
-    return -1
-  }
-  return parseInt(s)
-})
+const parse = (s: string) => s.trim().split('\n\n')
+    .map((s) => s.split('\n'))
+    .map((s) => s.map((s1) => parseInt(s1))
+)
 
 export const mostCallories = (s: string) => {
-  let max = 0
-  let sum = 0
-  parse(s).forEach((a) => {
-    if (a === -1) {
-      if (sum > max) {
-        max = sum
-      }
-      sum = 0
-    }
-    else {
-      sum += a
-    }
-  })
-  return max
+  return parse(s)
+      .map((s) => s.reduce((a, b) => a + b))
+      .reduce((a, b) => Math.max(a, b))
 }
 
 exports.first = mostCallories
 
 export const top3MostCallories = (s: string) => {
-  let sums : number[] = []
-  let sum = 0
-  parse(s).forEach((a) => {
-    if (a === -1) {
-      sums.push(sum)
-      sum = 0
-    }
-    else {
-      sum += a
-    }
-  })
-  sums.sort((a, b) => b - a)
-  return sums[0] + sums[1] + sums[2]
+  return parse(s)
+      .map((s) => s.reduce((a, b) => a + b))
+      .sort((a, b) => b - a)
+      .slice(0, 3)
+      .reduce((a, b) => a + b)
 }
 
 exports.second = top3MostCallories
