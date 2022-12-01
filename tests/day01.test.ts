@@ -1,4 +1,4 @@
-import { mostCalories, top3MostCalories } from '../src/day01'
+import { mostCalories, top3MostCalories } from '../src/day01';
 
 const callories = `
 1000
@@ -15,12 +15,12 @@ const callories = `
 9000
 
 10000
-`
+`;
 
 test('day 1-1', () => {
-  expect(mostCalories(callories)).toBe(24000)
-})
+	expect(mostCalories(callories)).toBe(24000);
+});
 
 test('day 1-2', () => {
-  expect(top3MostCalories(callories)).toBe(45000)
-})
+	expect(top3MostCalories(callories)).toBe(45000);
+});
