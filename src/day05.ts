@@ -1,16 +1,17 @@
 const parse = (s: string) => {
-	const p = s.split('\n').map(
-		row => {
+	const p = s
+		.split('\n')
+		.map((row) => {
 			if (row.charAt(0) == 'm') return row;
 			let r = '';
 			for (let i = 1; i < row.length; i += 4) {
 				r += row.charAt(i);
 			}
 			return r;
-		}
-	).filter(row => row.length > 0);
-	const stacksMap = p.filter(row => row.charAt(0) != 'm').reverse();
-	const moves = p.filter(row => row.charAt(0) == 'm');
+		})
+		.filter((row) => row.length > 0);
+	const stacksMap = p.filter((row) => row.charAt(0) != 'm').reverse();
+	const moves = p.filter((row) => row.charAt(0) == 'm');
 
 	const stacks: string[][] = [];
 	for (let j = 0; j < stacksMap[0].length; j++) {
@@ -21,17 +22,27 @@ const parse = (s: string) => {
 		}
 		stacks.push(s);
 	}
-	return { 'stacks': stacks, 'moves': moves };
+	return { stacks: stacks, moves: moves };
 };
 
-const moveContainers = (stacks: string[][], count: number, from: number, to: number) => {
+const moveContainers = (
+	stacks: string[][],
+	count: number,
+	from: number,
+	to: number
+) => {
 	for (let i = 0; i < count; i++) {
 		const f = stacks[from].pop();
 		if (f) stacks[to].push(f);
 	}
 };
 
-const moveContainerGroup = (stacks: string[][], count: number, from: number, to: number) => {
+const moveContainerGroup = (
+	stacks: string[][],
+	count: number,
+	from: number,
+	to: number
+) => {
 	const f = stacks[from].splice(stacks[from].length - count, count);
 	if (f) stacks[to].push(...f);
 };
@@ -46,11 +57,13 @@ const getOnTopAfterRearrangement = (s: string, f: Function) => {
 		f(stacks, l[1], l[3] - 1, l[5] - 1);
 	}
 
-	return stacks.map(s => s[s.length - 1]).join('');
+	return stacks.map((s) => s[s.length - 1]).join('');
 };
 
-export const getOnTopAfterRearrangementOneByOne = (s: string) => getOnTopAfterRearrangement(s, moveContainers);
+export const getOnTopAfterRearrangementOneByOne = (s: string) =>
+	getOnTopAfterRearrangement(s, moveContainers);
 exports.first = getOnTopAfterRearrangementOneByOne;
 
-export const getOnTopAfterRearrangementByGroups = (s: string) => getOnTopAfterRearrangement(s, moveContainerGroup);
+export const getOnTopAfterRearrangementByGroups = (s: string) =>
+	getOnTopAfterRearrangement(s, moveContainerGroup);
 exports.second = getOnTopAfterRearrangementByGroups;

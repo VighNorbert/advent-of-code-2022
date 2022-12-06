@@ -6,15 +6,19 @@ const getSinglePriority = (s: string) => {
 };
 
 export const getPriority = (s: string) => {
-	return parse(s)
-		.map((s) => [s.substring(0, s.length / 2).split(''), s.substring(s.length / 2).split('')])
-		.map(
-			(s) => s[0]
-				.map((c) => (s[1].includes(c) ? getSinglePriority(c) : 0))
-				.reduce((a, b) => a > b ? a : b)
-		)
-		// console.log(a);
-		.reduce((a, b) => a + b);
+	return (
+		parse(s)
+			.map((s) => [
+				s.substring(0, s.length / 2).split(''),
+				s.substring(s.length / 2).split(''),
+			])
+			.map((s) =>
+				s[0]
+					.map((c) => (s[1].includes(c) ? getSinglePriority(c) : 0))
+					.reduce((a, b) => (a > b ? a : b))
+			)
+			.reduce((a, b) => a + b)
+	);
 };
 
 exports.first = getPriority;
@@ -26,11 +30,14 @@ export const getPriorityAlt = (s: string) => {
 		let a = p[i].split('');
 		let b = p[i + 1].split('');
 		let c = p[i + 2].split('');
-		let prio = a.map((ch) => (b.includes(ch) && c.includes(ch) ? getSinglePriority(ch) : 0))
-			.reduce((a, b) => a > b ? a : b);
+		let prio = a
+			.map((ch) =>
+				b.includes(ch) && c.includes(ch) ? getSinglePriority(ch) : 0
+			)
+			.reduce((a, b) => (a > b ? a : b));
 		sum += prio;
 	}
-	return sum
+	return sum;
 };
 
 exports.second = getPriorityAlt;

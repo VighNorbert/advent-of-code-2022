@@ -1,4 +1,7 @@
-import { getOnTopAfterRearrangementOneByOne, getOnTopAfterRearrangementByGroups } from '../src/day05';
+import {
+	getOnTopAfterRearrangementOneByOne,
+	getOnTopAfterRearrangementByGroups,
+} from '../src/day05';
 
 const stacks = `    [D]    
 [N] [C]    
