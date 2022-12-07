@@ -22,7 +22,7 @@ $ ls
 4060174 j
 8033020 d.log
 5626152 d.ext
-7214296 k`
+7214296 k`;
 
 test('day 7-1', () => {
 	expect(deletableSum(input)).toBe(95437);

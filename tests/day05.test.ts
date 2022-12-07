@@ -1,6 +1,6 @@
 import {
 	getOnTopAfterRearrangementOneByOne,
-	getOnTopAfterRearrangementByGroups,
+	getOnTopAfterRearrangementByGroups
 } from '../src/day05';
 
 const stacks = `    [D]    
