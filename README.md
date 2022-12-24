@@ -1,6 +1,6 @@
 # Advent of Code 2022 in Typescript
 
-![AoC 2022 36/50](https://img.shields.io/badge/AoC%202022-36%2F50-orange)
+![AoC 2022 38/50](https://img.shields.io/badge/AoC%202022-38%2F50-orange)
 
 2022 fork of original code for AoC 2021 from atme: https://github.com/atme/advent-of-code-2021
 
